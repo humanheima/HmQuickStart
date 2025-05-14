@@ -12,5 +12,10 @@
       "name": "EntryAbility_label",
       "value": "HMOS世界入门版"
     }
+    ,
+    {
+      "name": "fast_begin",
+      "value": "快速入门"
+    }
   ]
 }
