@@ -19,7 +19,7 @@
     },
     {
       "name": "apply_for_network",
-      "value": "Allow the app to access the network"
+      "value": "允许应用使用网络"
     }
   ]
 }
