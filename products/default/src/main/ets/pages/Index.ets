@@ -41,7 +41,7 @@ struct Index {
     //设置barPosition为BarPosition.End时，页签栏会位于应用界面的下方进行显示。
     Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
       TabContent() {
-        Text('TabContent1')
+        QuickStartPage()
       }
       .tabBar(this.tabBarBuilder('快速入门', 0, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
 

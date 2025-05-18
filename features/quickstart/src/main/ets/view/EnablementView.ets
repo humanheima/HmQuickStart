@@ -27,6 +27,7 @@ export struct EnablementView {
     new ArticleClass('8', $r('app.media.enablement_pic8'), '开发者论坛', '和其他应用开发者交流技术、共同进步。',
       'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
 
   build() {
 
@@ -45,6 +46,9 @@ export struct EnablementView {
         ForEach(this.enablementList, (item: ArticleClass) => {
           GridItem() {
             EnablementItem({ enablementItem: item })
+              .onClick(() => {
+                this.articlePathStack.pushPathByName('articleDetail', item)
+              })
           }
         }, (item: ArticleClass) => item.id)
 

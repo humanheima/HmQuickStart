@@ -36,6 +36,7 @@ export struct TutorialView {
       '一套代码工程，一次开发上架，多端按需部署。支撑开发者快速高效的开发支持多种终端设备形态的应用，实现对不同设备兼容的同时，提供跨设备的流转、迁移和协同的分布式体验。',
       'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
 
   build() {
 
@@ -54,6 +55,9 @@ export struct TutorialView {
         ForEach(this.tutorialList, (item: ArticleClass) => {
           ListItem() {
             TutorialItem({ tutorialItem: item })
+              .onClick(() => {
+                this.articlePathStack.pushPathByName('articleDetail', item)
+              })
           }
         }, (item: ArticleClass) => item.id)
 
@@ -67,8 +71,6 @@ export struct TutorialView {
 
   }
 }
-
-
 
 
 @Component
