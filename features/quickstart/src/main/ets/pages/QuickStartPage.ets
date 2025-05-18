@@ -4,10 +4,10 @@ import { Banner } from '../view/Banner'
 import { EnablementView } from '../view/EnablementView'
 import { TutorialView } from '../view/TutorialView'
 import { ArticleDetailPage } from './ArticleDetailPage';
+import { BannerDetailPage } from './BannerDetailPage';
 
 @Component
 export struct QuickStartPage {
-
   @Provide('articlePathStack') articlePathStack: NavPathStack = new NavPathStack();
 
   @Builder
@@ -15,6 +15,8 @@ export struct QuickStartPage {
 
     if (name === 'articleDetail') {
       ArticleDetailPage()
+    } else if (name === 'bannerDetailPage') {
+      BannerDetailPage()
     }
 
   }
