@@ -1,9 +1,23 @@
 import { it } from "@ohos/hypium";
+import { KnowledgeMapContent, Section } from "../view/KnowledgeMapContent";
 import { NavBarItem, NavBarItemType } from "./NavBarItem";
+import { BusinessError } from "@kit.BasicServicesKit";
+import { util } from "@kit.ArkTS";
 
 @Preview
 @Component
 export struct KnowledgeMap {
+  @State currentNavBarIndex: number = -1;
+  @Provide('knowledgeMapPageStack') knowledgeMapPageStack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'KnowledgeMapContent') {
+      KnowledgeMapContent({ section: this.sections[this.currentNavBarIndex] })
+    }
+
+  }
+
   @State navBarList: NavBarItemType[] = [
     { order: '01', title: '准备与学习' },
     { order: '02', title: '构建应用' },
@@ -13,41 +27,50 @@ export struct KnowledgeMap {
     { order: '06', title: '商业变现' },
     { order: '07', title: '更多' }
   ];
+  @State sections: Section[] = [];
+
+  aboutToAppear(): void {
+    this.getSections();
+  }
 
   build() {
-    Column() {
-      Text('知识地图')
-        .fontFamily('HarmonyHeiTi-Bold')
-        .fontSize(24)
-        .fontColor(Color.Black)
-        .textAlign(TextAlign.Start)
-        .lineHeight(33)
-        .fontWeight(700)
-        .width('100%')
+    Navigation(this.knowledgeMapPageStack) {
+      Scroll() {
+        Column() {
+          Text('知识地图')
+            .fontFamily('HarmonyHeiTi-Bold')
+            .fontSize(24)
+            .fontColor(Color.Black)
+            .textAlign(TextAlign.Start)
+            .lineHeight(33)
+            .fontWeight(700)
+            .width('100%')
 
-      Image($r('app.media.knowledge_map_banner'))
-        .width('100%')
-        .borderRadius(16)
-        .margin({ top: 19, bottom: 8 })
+          Image($r('app.media.knowledge_map_banner'))
+            .width('100%')
+            .borderRadius(16)
+            .margin({ top: 19, bottom: 8 })
 
-      Text('通过循序渐进的学习路径，无经验和有经验的开发者都可以轻松掌握ArkTS语言声明式开发范式，体验更简洁、更友好的HarmonyOS应用开发旅程。')
-        .fontFamily('HarmonyHeiTi')
-        .fontSize(14)
-        .fontColor('rgba(0,0,0,0.60)')
-        .fontWeight(400)
-        .textAlign(TextAlign.Start)
+          Text('通过循序渐进的学习路径，无经验和有经验的开发者都可以轻松掌握ArkTS语言声明式开发范式，体验更简洁、更友好的HarmonyOS应用开发旅程。')
+            .fontFamily('HarmonyHeiTi')
+            .fontSize(14)
+            .fontColor('rgba(0,0,0,0.60)')
+            .fontWeight(400)
+            .textAlign(TextAlign.Start)
 
-      List({ space: 12 }) {
+          List({ space: 12 }) {
 
 
-        ForEach(this.navBarList, (item: NavBarItemType, index: number) => {
-          ListItem() {
-            NavBarItem({ navBarItem: item })
+            ForEach(this.navBarList, (item: NavBarItemType, index: number) => {
+              ListItem() {
+                NavBarItem({ navBarItem: item, currentNavBarIndex: this.currentNavBarIndex })
+              }.width('100%')
+            }, (item: NavBarItemType): string => item.title)
           }.width('100%')
-        }, (item: NavBarItemType): string => item.title)
-      }.width('100%')
-      .margin({ top: 24 })
+          .margin({ top: 24 })
 
+        }
+      }
     }
     .padding({
       top: 12,
@@ -56,5 +79,21 @@ export struct KnowledgeMap {
       left: 16
     })
     .backgroundColor('#F1F3F5')
+    .hideTitleBar(true)
+    .navDestination(this.PageMap)
+    .mode(NavigationMode.Stack)
+  }
+
+  private getSections() {
+    try {
+      getContext(this).resourceManager.getRawFileContent("MapData.json", (error: BusinessError, value: Uint8Array) => {
+
+        const textDecoder: util.TextDecoder = util.TextDecoder.create("utf-8");
+        const res = textDecoder.decodeWithStream(value, { stream: false });
+        this.sections = JSON.parse(res);
+      });
+    } catch (error) {
+      console.error(`callback getRawFileContent failed, error is ${JSON.stringify(error)}`)
+    }
   }
 }
