@@ -1,6 +1,9 @@
 import { it } from "@ohos/hypium"
 import { BannerClass } from "../model/BannerClass"
 
+/**
+ * 轮播图
+ */
 @Preview
 @Component
 export struct Banner {
