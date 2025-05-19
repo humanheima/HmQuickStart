@@ -1,23 +1,26 @@
+import { Banner } from './Banner';
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World，你好';
+  @State message: string = '快速入门';
 
   build() {
-    RelativeContainer() {
+    Column() {
       Text(this.message)
-        .id('HelloWorld')//指定id
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+        .fontSize(24)
+        .fontWeight(700)
+        .width('100%')
+        .textAlign(TextAlign.Start)
+        .padding({left:16})
+        .fontFamily('HarmonyHeiTi-Bold')
+        .lineHeight(33)
+
+      Banner()
+
     }
     .height('100%')
     .width('100%')
+    .backgroundColor('#F1F3F5')
   }
 }
