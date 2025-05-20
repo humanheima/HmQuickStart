@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/dumingwei/.ohos/config/default_HmQuickStart_2p9Z5-TypGOXe9WnjldHFGq2PLBuQY7umpZYLvqkiWk=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B8A14B950272F611459BB865720F3C8E97BE56355251CCE89DB9F5AD73525D1361DB732E43D8988",
+          "profile": "/Users/dumingwei/.ohos/config/default_HmQuickStart_2p9Z5-TypGOXe9WnjldHFGq2PLBuQY7umpZYLvqkiWk=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/dumingwei/.ohos/config/default_HmQuickStart_2p9Z5-TypGOXe9WnjldHFGq2PLBuQY7umpZYLvqkiWk=.p12",
+          "storePassword": "0000001B8D81F4E321335086329F2924E44273F9BECF3A39485181B96FC618CF92616C2DFFDE73CF78426F"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",

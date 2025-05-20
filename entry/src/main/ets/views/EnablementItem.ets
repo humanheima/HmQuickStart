@@ -10,7 +10,7 @@ export struct EnablementItem {
   build() {
 
     Column() {
-      Image(this.enablementItem.imageSrc)
+      Image($r(this.enablementItem.imageSrc))
         .width('100%')
         .objectFit(ImageFit.Cover)
 

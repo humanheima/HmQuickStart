@@ -1,5 +1,6 @@
-import { ArticleClass } from "../model/ArticleClass";
-import { TutorialItem } from "./TutorialItem";
+import { ArticleClass } from '../model/ArticleClass';
+import { bufferToString } from '../util/BufferUtil';
+import { TutorialItem } from './TutorialItem';
 
 /**
  * 竖直列表组件
@@ -7,6 +8,10 @@ import { TutorialItem } from "./TutorialItem";
 @Component
 export struct TutorialView {
   @State tutorialList: Array<ArticleClass> = [];
+
+  aboutToAppear(): void {
+    this.getTutorialDataFromJSON()
+  }
 
   build() {
     Column() {
@@ -31,6 +36,17 @@ export struct TutorialView {
 
     }.margin({ top: 18 })
     .alignItems(HorizontalAlign.Start)
+
+  }
+
+  getTutorialDataFromJSON() {
+    getContext(this).resourceManager.getRawFileContent('TutorialData.json').then(value => {
+
+      // 转换为字符串
+      let res: string = bufferToString(value);
+      // 解析为数据结构
+      this.tutorialList = JSON.parse(res) as ArticleClass[];
+    })
 
   }
 }

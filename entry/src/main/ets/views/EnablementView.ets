@@ -2,11 +2,16 @@
  * 赋能组件
  */
 import { ArticleClass } from '../model/ArticleClass';
+import { bufferToString } from '../util/BufferUtil';
 import { EnablementItem } from './EnablementItem';
 
 @Component
 export struct EnablementView {
   @State enablementList: Array<ArticleClass> = [];
+
+  aboutToAppear(): void {
+    this.getEnablementDataFromJSON()
+  }
 
   build() {
 
@@ -36,6 +41,17 @@ export struct EnablementView {
     .margin({ top: 18 })
     .alignItems(HorizontalAlign.Start)
     .width('100%')
+
+  }
+
+  getEnablementDataFromJSON() {
+    getContext(this).resourceManager.getRawFileContent('EnablementData.json').then(value => {
+
+      // 转换为字符串
+      let res: string = bufferToString(value);
+      // 解析为数据结构
+      this.enablementList = JSON.parse(res) as ArticleClass[];
+    })
 
   }
 }

@@ -34,7 +34,7 @@ export struct TutorialItem {
       .margin({ right: 12 })
 
       Blank()
-      Image(this.tutorialItem.imageSrc)
+      Image($r(this.tutorialItem.imageSrc))
         .objectFit(ImageFit.Cover)
         .height(64)
         .width(108)
