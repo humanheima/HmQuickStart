@@ -38,7 +38,7 @@ export struct EnablementItem {
 
 
     }.width(160)
-    .height(169)
+    .height(180)
     .borderRadius(16)
     .backgroundColor(Color.White)
   }

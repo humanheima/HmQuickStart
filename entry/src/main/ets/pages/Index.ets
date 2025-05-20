@@ -1,5 +1,6 @@
 import { ArticleClass } from '../model/ArticleClass';
 import { EnablementView } from '../views/EnablementView';
+import { GridTestView } from '../views/GirdTestView';
 import { TutorialView } from '../views/TutorialView';
 import { Banner } from './Banner';
 
@@ -78,15 +79,19 @@ struct Index {
         .fontFamily('HarmonyHeiTi-Bold')
         .lineHeight(33)
 
-      Scroll() {
-        Column() {
-          Banner()
-          EnablementView({ enablementList: this.enablementList })
-          TutorialView({ tutorialList: this.tutorialList })
-        }
-      }.layoutWeight(1)
-      .scrollBar(BarState.Off)
-      .align(Alignment.TopStart)
+      // Scroll() {
+      //   Column() {
+      //     // Banner()
+      //     // EnablementView({ enablementList: this.enablementList })
+      //     // TutorialView({ tutorialList: this.tutorialList })
+      //
+      //     GridTestView()
+      //
+      //   }
+      // }.layoutWeight(1)
+      // .scrollBar(BarState.Off)
+      // .align(Alignment.TopStart)
+      GridTestView()
 
     }
     .height('100%')
