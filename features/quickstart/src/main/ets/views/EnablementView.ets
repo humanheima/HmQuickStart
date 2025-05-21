@@ -7,6 +7,9 @@ import { EnablementItem } from './EnablementItem';
 
 @Component
 export struct EnablementView {
+
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
+
   @State enablementList: Array<ArticleClass> = [];
 
   aboutToAppear(): void {
@@ -29,6 +32,9 @@ export struct EnablementView {
         ForEach(this.enablementList, (item: ArticleClass) => {
           GridItem() {
             EnablementItem({ enablementItem: item })
+              .onClick(() => {
+                this.articlePathStack.pushPathByName('articleDetail', item)
+              })
           }
         }, (item: ArticleClass) => item.id)
       }

@@ -11,10 +11,13 @@ import { LogUtil } from "../util/LogUtil"
 export struct Banner {
   @State bannerList: Array<BannerClass> = []
 
+  @Consume('articlePathStack') articlePathStack: NavPathStack;
+
   aboutToAppear(): void {
     LogUtil.debug("aboutToAppear")
     //方法名，后面要加括号，不然有问题，也不报错。
     this.getBannerDataFromJSON()
+
   }
 
   build() {
@@ -26,6 +29,9 @@ export struct Banner {
           .width('100%')
           .padding({ top: 11, left: 16, right: 16 })
           .borderRadius(16)
+          .onClick(()=>{
+            this.articlePathStack.pushPathByName('bannerDetailPage', item);
+          })
 
 
       }, (item: BannerClass, index: number) => item.id)

@@ -4,6 +4,7 @@ import { ArticleClass } from "../model/ArticleClass";
 export struct TutorialItem {
   @Prop tutorialItem: ArticleClass;
 
+
   build() {
     Row() {
 
