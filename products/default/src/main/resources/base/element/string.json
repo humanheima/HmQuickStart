@@ -11,6 +11,12 @@
     {
       "name": "EntryAbility_label",
       "value": "HMOS Hello world"
+    },
+
+    {
+      "name": "apply_for_network",
+      "value": "Allow the app to access the network"
     }
+
   ]
 }

@@ -1,3 +1,4 @@
+import { CourseLearning } from 'learning'
 import { QuickStartPage } from 'quickstart'
 
 @Component
@@ -5,7 +6,8 @@ import { QuickStartPage } from 'quickstart'
 struct Index {
   build() {
     Column() {
-      QuickStartPage()
+      //QuickStartPage()
+      CourseLearning()
     }
     .backgroundColor('#F1F3F5')
     .padding({ top: 36, bottom: 28 })
